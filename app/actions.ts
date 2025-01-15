@@ -2,6 +2,31 @@
 
 import { WorkflowExecutionResult } from './types/n8n'
 
+interface WorkflowNode {
+  parameters: Record<string, any>;
+  name: string;
+  type: string;
+  typeVersion: number;
+  position: [number, number];
+}
+
+interface WorkflowConnection {
+  main: Array<Array<{
+    node: string;
+    type: string;
+    index: number;
+  }>>;
+}
+
+interface WorkflowData {
+  name: string;
+  nodes: WorkflowNode[];
+  connections: Record<string, WorkflowConnection>;
+  active: boolean;
+  settings: Record<string, any>;
+  tags: string[];
+}
+
 const N8N_API_URL = `${process.env.NEXT_PUBLIC_N8N_API_URL}/api/v1`
 const N8N_API_KEY = process.env.NEXT_PUBLIC_N8N_API_KEY
 
@@ -31,7 +56,7 @@ export async function generateWorkflow(prompt: string): Promise<WorkflowExecutio
     const availableNodes = await nodesResponse.json()
     console.log('Available nodes:', JSON.stringify(availableNodes, null, 2))
 
-    const workflowData = {
+    const workflowData: WorkflowData = {
       name: `Workflow from prompt: ${prompt}`,
       nodes: [
         {
