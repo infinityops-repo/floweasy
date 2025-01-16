@@ -10,6 +10,17 @@ const nextConfig = {
     webpackBuildWorker: false,
     optimizeCss: true,
     forceSwcTransforms: true,
+    craCompat: false,
+    optimizeCss: {
+      cssModules: true,
+      inlineCriticalCss: true,
+      crittersOptions: {
+        preload: 'media',
+        pruneSource: true,
+        mergeStylesheets: true,
+        reduceInlineStyles: true
+      }
+    }
   },
   typescript: {
     ignoreBuildErrors: true
