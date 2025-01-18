@@ -1,46 +1,23 @@
 [build]
-  command = "npm install && npm run build"
+  command = "npm run build"
   publish = ".next"
+  environment = { NODE_VERSION = "18.19.0" }
 
 [build.environment]
   NEXT_PUBLIC_SUPABASE_URL = "https://juaeaocrdoaxwuybjkkv.supabase.co"
   NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp1YWVhb2NyZG9heHd1eWJqa2t2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzYyMDIwOTksImV4cCI6MjA1MTc3ODA5OX0.ZIlKfuMb9fujzwCVnESsmaso1IE3BxQt5zVPnXBVp6w"
-  NODE_VERSION = "18.19.0"
-  NPM_VERSION = "10.2.3"
   NEXT_TELEMETRY_DISABLED = "1"
-  CI = "1"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-
-[build.processing]
-  skip_processing = true
-
-[build.processing.css]
-  bundle = false
-  minify = false
-
-[build.processing.js]
-  bundle = false
-  minify = false
-
-[build.processing.html]
-  pretty_urls = true
-
-[build.processing.images]
-  compress = false
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-[dev]
-  framework = "next"
-  targetPort = 3000
+[functions]
+  node_bundler = "esbuild"
 
-[context.production]
-  command = "npm install && npm run build"
-
-[context.deploy-preview]
-  command = "npm install && npm run build" 
+[build.processing]
+  skip_processing = true 

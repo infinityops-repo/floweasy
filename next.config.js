@@ -7,20 +7,7 @@ const nextConfig = {
     domains: ['juaeaocrdoaxwuybjkkv.supabase.co']
   },
   experimental: {
-    webpackBuildWorker: false,
-    optimizeCss: true,
-    forceSwcTransforms: true,
-    craCompat: false,
-    optimizeCss: {
-      cssModules: true,
-      inlineCriticalCss: true,
-      crittersOptions: {
-        preload: 'media',
-        pruneSource: true,
-        mergeStylesheets: true,
-        reduceInlineStyles: true
-      }
-    }
+    webpackBuildWorker: false
   },
   typescript: {
     ignoreBuildErrors: true
@@ -28,12 +15,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true
   },
-  output: 'standalone',
-  poweredByHeader: false,
-  compress: true,
-  generateEtags: true,
-  distDir: '.next',
-  cleanDistDir: true
+  output: 'standalone'
 }
 
 module.exports = nextConfig 
